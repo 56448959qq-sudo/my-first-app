@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sky Runner MVP</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    「ようこそ私のページへ」
+    <main class="game-shell">
+        <header class="game-header">
+            <div>
+                <p class="eyebrow">HORIZONTAL ACTION MVP</p>
+                <h1>Sky Runner</h1>
+            </div>
+            <div class="score-board" aria-live="polite">
+                <span>Score <strong id="score">0</strong></span>
+                <span>Lives <strong id="lives">3</strong></span>
+            </div>
+        </header>
+
+        <section class="game-frame" aria-label="Sky Runner game">
+            <canvas id="gameCanvas" width="960" height="540"></canvas>
+            <div id="message" class="message">
+                <h2>Sky Runner</h2>
+                <p>Move with <kbd>A</kbd><kbd>D</kbd> or <kbd>←</kbd><kbd>→</kbd>. Jump with <kbd>W</kbd>, <kbd>↑</kbd>, or <kbd>Space</kbd>.</p>
+                <button id="startButton" type="button">Start game</button>
+            </div>
+        </section>
+
+        <div class="touch-controls" aria-label="Touch controls">
+            <button type="button" data-key="left" aria-label="Move left">←</button>
+            <button type="button" data-key="jump" aria-label="Jump">↑</button>
+            <button type="button" data-key="right" aria-label="Move right">→</button>
+        </div>
+
+        <p class="hint">Reach the flag, collect coins, and avoid the red drones.</p>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
