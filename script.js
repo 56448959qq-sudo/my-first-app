@@ -130,54 +130,99 @@ function draw() {
     const player = game.player;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const sky = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    sky.addColorStop(0, "#173c66");
-    sky.addColorStop(1, "#8dd5d2");
+    sky.addColorStop(0, "#78b8d1");
+    sky.addColorStop(1, "#d9edb5");
     ctx.fillStyle = sky;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.save();
     ctx.translate(-game.cameraX, 0);
-    ctx.fillStyle = "#6ab5b1";
-    for (let x = -200; x < WORLD_WIDTH; x += 360) ctx.fillRect(x, 330, 180, 130);
+    drawNatureBackground();
 
     for (const platform of level.platforms) {
-        ctx.fillStyle = "#18334e";
+        ctx.fillStyle = "#795548";
         ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
-        ctx.fillStyle = "#55d6be";
+        ctx.fillStyle = "#477a3d";
         ctx.fillRect(platform.x, platform.y, platform.width, 9);
+        ctx.fillStyle = "#8dbb5a";
+        for (let x = platform.x + 12; x < platform.x + platform.width; x += 28) {
+            ctx.fillRect(x, platform.y - 5, 3, 7);
+        }
     }
 
     for (const coin of game.coins) {
         if (!coin.collected) {
-            ctx.fillStyle = "#ffd166";
+            ctx.fillStyle = "#9b5e2e";
+            ctx.fillRect(coin.x - 4, coin.y - 9, 8, 13);
+            ctx.fillStyle = "#e3a84b";
             ctx.beginPath();
-            ctx.arc(coin.x, coin.y, 10, 0, Math.PI * 2);
+            ctx.ellipse(coin.x, coin.y + 3, 9, 11, 0, 0, Math.PI * 2);
             ctx.fill();
         }
     }
 
     for (const enemy of game.enemies) {
-        ctx.fillStyle = "#ef476f";
-        ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
-        ctx.fillStyle = "#08111f";
-        ctx.fillRect(enemy.x + 7, enemy.y + 10, 7, 7);
-        ctx.fillRect(enemy.x + 21, enemy.y + 10, 7, 7);
+        ctx.fillStyle = "#f0805a";
+        ctx.beginPath();
+        ctx.arc(enemy.x + enemy.width / 2, enemy.y + 14, 18, Math.PI, 0);
+        ctx.fill();
+        ctx.fillStyle = "#f7e4bb";
+        ctx.fillRect(enemy.x + 8, enemy.y + 14, 18, 26);
+        ctx.fillStyle = "#6b342d";
+        ctx.fillRect(enemy.x + 12, enemy.y + 23, 4, 4);
+        ctx.fillRect(enemy.x + 21, enemy.y + 23, 4, 4);
     }
 
-    ctx.fillStyle = "#f7f7ff";
+    ctx.fillStyle = "#d8c49a";
     ctx.fillRect(3480, 250, 8, 210);
-    ctx.fillStyle = "#ffd166";
+    ctx.fillStyle = "#5c8a43";
     ctx.beginPath();
-    ctx.moveTo(3488, 255);
-    ctx.lineTo(3560, 280);
-    ctx.lineTo(3488, 305);
+    ctx.arc(3484, 220, 45, 0, Math.PI * 2);
     ctx.fill();
+    ctx.fillStyle = "#477a3d";
+    ctx.fillRect(3445, 220, 80, 20);
 
-    ctx.fillStyle = "#55d6be";
+    ctx.fillStyle = "#d17a4d";
     ctx.fillRect(player.x, player.y, player.width, player.height);
-    ctx.fillStyle = "#06221f";
-    ctx.fillRect(player.x + 18, player.y + 12, 6, 6);
+    ctx.fillStyle = "#f0c28b";
+    ctx.beginPath();
+    ctx.arc(player.x + 15, player.y + 10, 11, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#3d5f35";
+    ctx.fillRect(player.x + 18, player.y + 26, 6, 6);
     ctx.restore();
+}
+
+function drawNatureBackground() {
+    ctx.fillStyle = "#91bd83";
+    for (let x = -200; x < WORLD_WIDTH; x += 500) {
+        ctx.beginPath();
+        ctx.moveTo(x, 340);
+        ctx.lineTo(x + 180, 170);
+        ctx.lineTo(x + 390, 340);
+        ctx.fill();
+    }
+
+    for (let x = -100; x < WORLD_WIDTH; x += 310) {
+        ctx.fillStyle = "#6b9657";
+        ctx.fillRect(x + 74, 230, 18, 230);
+        ctx.beginPath();
+        ctx.arc(x + 82, 205, 76, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#7eaa61";
+        ctx.beginPath();
+        ctx.arc(x + 132, 250, 52, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    ctx.fillStyle = "#fff7d6";
+    for (let x = 80; x < WORLD_WIDTH; x += 520) {
+        ctx.beginPath();
+        ctx.arc(x, 90, 24, 0, Math.PI * 2);
+        ctx.arc(x + 30, 84, 34, 0, Math.PI * 2);
+        ctx.arc(x + 66, 94, 22, 0, Math.PI * 2);
+        ctx.fill();
+    }
 }
 
 function loop() {

@@ -1,6 +1,6 @@
-# Sky Runner
+# Forest Runner
 
-A small horizontal action-game MVP built with plain HTML, CSS, and JavaScript.
+A small horizontal forest-adventure game MVP built with plain HTML, CSS, and JavaScript.
 
 ## Run it
 
@@ -22,4 +22,5 @@ Then visit <http://localhost:8000>.
 
 - `index.html` contains the page and game canvas.
 - `style.css` contains the layout, responsive styles, and overlay UI.
-- `script.js` contains the game loop, level, collisions, enemies, coins, camera, and input handling.
+- `script.js` contains the game loop, level, collisions, mushroom enemies, acorns, nature
+  background, camera, and input handling.
